@@ -5,15 +5,27 @@ var people = [
 	{ name: 'haha', email: 'haha@yahoo.com' }
 ];
 
+var G_URL = "http://gravatar.com/avatar"
+
 var Gravatar = React.createClass({
 	render: function() {
 
 		var listPeople = this.props.people.map(function(e){
-			return <li> {e.name} </li>
+			var email = e.email;
+			var size = 36;
+			var hash = md5(email);
+			console.log(hash);
+			var url = G_URL + '/' + hash + '?s=' + size;
+			return (<li> 
+						<p> { e.name } </p>
+						<p> { e.email } </p>
+						<p> <img src={ "http://www.alt-market.com/images/stories/sheeple1.jpg" }/> </p>
+					</li>)
+
 		})
 		return (
 			<div>
-				<h3>People</h3>
+				<h3>Sheeple</h3>
 				<ul>
 					{ listPeople }
 				</ul>
@@ -23,5 +35,5 @@ var Gravatar = React.createClass({
 });
 
 React.render(<Gravatar 
-			  people={people} />,
+			  people={ people }/>,
 	document.getElementById('gravatar'));
