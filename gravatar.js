@@ -1,24 +1,21 @@
-
-var greetingsArr = ["hello", "hej", "bonjour", "hola", "konichiwa", "nihao"]
-
+var people = [
+	{ name: 'andrew', email: 'andrew@myspace' },
+	{ name: 'wawa', email: 'wawa@aol.com' },
+	{ name: 'jaja', email: 'jaja@gmail.com' },
+	{ name: 'haha', email: 'haha@yahoo.com' }
+];
 
 var Gravatar = React.createClass({
 	render: function() {
 
-		var title = "Various Greetings";
-		/*var makeList = function(e){
-			return <li> {e} </li>
-		};*/
-		var greetings = this.props.hellos.map(function(e){
-			return <li> {e} </li>
+		var listPeople = this.props.people.map(function(e){
+			return <li> {e.name} </li>
 		})
 		return (
 			<div>
-				<h3> { title } </h3>
-				<h3> My name is { this.props.name } </h3>
-				<h3> I am { this.props.age } years old </h3>
+				<h3>People</h3>
 				<ul>
-					{ greetings }
+					{ listPeople }
 				</ul>
 			</div>
 		)
@@ -26,7 +23,5 @@ var Gravatar = React.createClass({
 });
 
 React.render(<Gravatar 
-			  name="Hubert" 
-			  age="57" 
-			  hellos={greetingsArr} />,
+			  people={people} />,
 	document.getElementById('gravatar'));
